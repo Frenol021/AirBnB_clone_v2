@@ -5,37 +5,35 @@ from flask import Flask
 
 
 app = Flask(__name__)
-app.url_map.strict_slashes = False
 
-
-@app.route('/')
+@app.route('/', strict_slashes=False)
 def hello_world():
     """ Returns some text. """
     return 'Hello HBNB!'
 
 
-@app.route('/hbnb')
+@app.route('/hbnb', strict_slashes=False)
 def hello():
     """ Return other text. """
     return 'HBNB'
 
 
-@app.route('/c/<text>')
+@app.route('/c/<text>', strict_slashes=False)
 def c_text(text):
     """ replace text with variable. """
     text = text.replace('_', ' ')
     return 'C {}'.format(text)
 
 
-@app.route('/python/')
-@app.route('/python/<text>')
+@app.route('/python/', strict_slashes=False)
+@app.route('/python/<text>', strict_slashes=False)
 def python_text(text='is cool'):
     """ replace more text with another variable. """
     text = text.replace('_', ' ')
     return 'Python {}'.format(text)
 
 
-@app.route('/number/<int:n>')
+@app.route('/number/<int:n>', strict_slashes=False)
 def number_text(n):
     """ replace with int only if given int. """
     n = str(n)
